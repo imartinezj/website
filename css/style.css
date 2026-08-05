@@ -9,13 +9,14 @@
   --color-text: #1c1c1a;
   --color-text-muted: #55534d;
   --color-border: #e3e1da;
-  --color-accent: #1f3a5f;      /* deep academic navy */
+  --color-accent: #006C8C;      /* accessible TU Delft blue — 5.96:1 contrast on white, passes WCAG AA */
   --color-accent-soft: #eef2f6;
-  --color-link: #1f3a5f;
-  --color-link-hover: #0f1f33;
+  --color-link: #006C8C;
+  --color-link-hover: #00445a;
 
-  --color-tudelft: #00A6D6;     /* TU Delft cyan */
-  --color-intl: #0B3D6E;        /* darker blue — UPC / other international programmes */
+  --color-tudelft: #006C8C;     /* same accessible TU Delft blue — used for text (thesis titles) and legend dot */
+  --color-tudelft-swatch: #00A6D6;  /* brighter TU Delft cyan — decorative use only (page-hero underline accent) */
+  --color-intl: #9C4221;        /* warm rust/terracotta — UPC / other international programmes, deliberately a different hue from TU Delft blue */
 
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -184,6 +185,54 @@ main {
 }
 .site-footer a { color: var(--color-text-muted); }
 
+/* ---------- Page hero banner (background photo + title) ---------- */
+
+.page-hero {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background-color: var(--color-accent);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+}
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 20, 28, 0.15) 0%, rgba(15, 20, 28, 0.82) 100%);
+}
+.page-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2rem;
+  width: 100%;
+}
+.page-hero-inner h1 {
+  color: #fff;
+  margin: 0;
+  font-size: 3.2rem;
+  line-height: 1.05;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+.page-hero-rule {
+  display: block;
+  width: 90px;
+  height: 4px;
+  background: var(--color-tudelft-swatch);
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+@media (max-width: 620px) {
+  .page-hero { height: 220px; }
+  .page-hero-inner h1 { font-size: 2.2rem; }
+}
+
 /* ---------- Hero (home) ---------- */
 
 .hero {
@@ -222,6 +271,32 @@ main {
   .hero { flex-direction: column; align-items: center; text-align: center; }
 }
 
+/* ---------- News list (home) ---------- */
+
+.news-list {
+  list-style: none;
+  padding-left: 0;
+}
+.news-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px dotted var(--color-border);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.news-list li:last-child { border-bottom: none; }
+.news-date {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border-radius: 3px;
+  padding: 0.05em 0.45em;
+  margin-right: 0.5em;
+  white-space: nowrap;
+}
+
 /* ---------- Cards / projects ---------- */
 
 .card {
@@ -233,6 +308,41 @@ main {
 }
 .card h3 { margin-top: 0; }
 .card .meta { color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 0.8em; }
+
+.card-figure {
+  margin: -1.4rem -1.5rem 1rem;
+}
+.card-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* Card variant with a small figure on the left, matching .pub-card proportions */
+.card-with-figure {
+  display: flex;
+  gap: 1.4rem;
+}
+.card-figure-side {
+  flex: 0 0 140px;
+  width: 140px;
+}
+.card-figure-side img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  display: block;
+}
+.card-body { flex: 1 1 auto; min-width: 0; }
+.card-body h3 { margin-top: 0; }
+@media (max-width: 560px) {
+  .card-with-figure { flex-direction: column; }
+  .card-figure-side { width: 100%; }
+  .card-figure-side img { height: 140px; }
+}
 
 .figure {
   margin: 1.5rem 0;
@@ -292,14 +402,14 @@ main {
   list-style: none;
 }
 .link-row a {
-  border: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  border: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
   border-radius: 999px;
   padding: 0.4rem 1rem;
   font-size: 0.88rem;
-  color: var(--color-text);
+  color: var(--color-accent);
 }
-.link-row a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.link-row a:hover { background: var(--color-accent-soft); border-color: var(--color-link-hover); color: var(--color-link-hover); }
 
 /* ---------- Supervision lists ---------- */
 
@@ -327,6 +437,36 @@ main {
 .swatch { display: inline-block; width: 11px; height: 11px; border-radius: 50%; }
 .swatch.tu-delft { background: var(--color-tudelft); }
 .swatch.intl { background: var(--color-intl); }
+
+/* ---------- Year groups (MSc list, grouped by defense year) ---------- */
+
+.year-group {
+  margin: 1.2rem 0;
+  border-top: 1px dotted var(--color-border);
+  padding-top: 0.9rem;
+}
+.year-group summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  user-select: none;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+.year-group summary::-webkit-details-marker { display: none; }
+.year-group summary::before {
+  content: "▸";
+  display: inline-block;
+  font-size: 1.4em;
+  color: var(--color-accent);
+  transition: transform 0.15s ease;
+}
+.year-group[open] summary::before { content: "▾"; }
+.year-group summary:hover { color: var(--color-accent); }
+.year-group summary .year-count { font-weight: 400; font-size: 0.85rem; }
+.year-group .thesis-item:first-of-type { margin-top: 1rem; }
 
 /* ---------- Collapsible sections (native details/summary) ---------- */
 
@@ -379,12 +519,12 @@ details.collapsible summary:hover::after { color: var(--color-accent); border-co
   background: white;
 }
 .pub-card-figure {
-  flex: 0 0 160px;
-  width: 160px;
+  flex: 0 0 230px;
+  width: 230px;
 }
 .pub-card-figure img, .pub-card-figure svg {
   width: 100%;
-  height: 110px;
+  height: 170px;
   object-fit: contain;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
