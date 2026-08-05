@@ -1,0 +1,485 @@
+/* ============================================================
+   Irene Martínez — personal academic site
+   Clean academic minimal theme
+   ============================================================ */
+
+:root {
+  --color-bg: #fafaf8;
+  --color-bg-alt: #f2f1ed;
+  --color-text: #1c1c1a;
+  --color-text-muted: #55534d;
+  --color-border: #e3e1da;
+  --color-accent: #1f3a5f;      /* deep academic navy */
+  --color-accent-soft: #eef2f6;
+  --color-link: #1f3a5f;
+  --color-link-hover: #0f1f33;
+
+  --color-tudelft: #00A6D6;     /* TU Delft cyan */
+  --color-intl: #0B3D6E;        /* darker blue — UPC / other international programmes */
+
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --max-width: 880px;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.25;
+  margin: 0 0 0.6em;
+}
+
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.5rem; margin-top: 2.6em; padding-top: 0.4em; border-top: 1px solid var(--color-border); }
+h2:first-of-type { border-top: none; margin-top: 1.4em; padding-top: 0; }
+h3 { font-size: 1.15rem; margin-top: 1.8em; }
+h4 { font-size: 1rem; margin-top: 1.2em; }
+
+p { margin: 0 0 1.1em; }
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 58, 95, 0.35);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+a:hover { color: var(--color-link-hover); border-bottom-color: currentColor; }
+
+ul, ol { padding-left: 1.3em; }
+li { margin-bottom: 0.4em; }
+
+.muted { color: var(--color-text-muted); }
+.small { font-size: 0.9rem; }
+
+/* ---------- Layout shell ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 250, 248, 0.92);
+  backdrop-filter: saturate(140%) blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-text);
+  border-bottom: none;
+  letter-spacing: 0.01em;
+}
+.site-title:hover { color: var(--color-accent); }
+
+.site-nav > ul {
+  list-style: none;
+  display: flex;
+  gap: 1.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav > ul > li { position: relative; }
+
+/* Dropdown submenus must NOT inherit the top-level flex row —
+   this was the bug making them render as a permanently-visible horizontal bar. */
+.dropdown {
+  list-style: none;
+  margin: 0;
+}
+
+.site-nav a {
+  border-bottom: none;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.3rem 0.1rem;
+}
+.site-nav a:hover,
+.site-nav li.active > a {
+  color: var(--color-accent);
+}
+.site-nav li.active > a {
+  box-shadow: inset 0 -2px 0 var(--color-accent);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 190px;
+  padding: 0.4rem 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  z-index: 60;
+}
+/* Submenus only appear on hover/focus (mouse) or explicit tap-toggle (touch, via .open added by JS).
+   They are never shown just because the page loaded. */
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown,
+.has-dropdown.open .dropdown {
+  display: block;
+}
+.dropdown li { margin: 0; }
+.dropdown a {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  margin-top: 4rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+.site-footer a { color: var(--color-text-muted); }
+
+/* ---------- Hero (home) ---------- */
+
+.hero {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.hero-photo {
+  flex: 0 0 160px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero-text h1 { margin-bottom: 0.2em; }
+.hero-role {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.9em;
+}
+
+@media (max-width: 620px) {
+  .hero { flex-direction: column; align-items: center; text-align: center; }
+}
+
+/* ---------- Cards / projects ---------- */
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: white;
+}
+.card h3 { margin-top: 0; }
+.card .meta { color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 0.8em; }
+
+.figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure img, .figure svg { max-width: 100%; height: auto; }
+.figure figcaption {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 0.6rem;
+}
+
+/* ---------- Publications ---------- */
+
+.pub-section h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.4em;
+}
+
+.pub-list {
+  list-style: none;
+  padding-left: 0;
+}
+.pub-list li {
+  padding: 0.55rem 0;
+  border-bottom: 1px dotted var(--color-border);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.pub-list li:last-child { border-bottom: none; }
+.pub-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border-radius: 3px;
+  padding: 0.05em 0.45em;
+  margin-right: 0.5em;
+}
+.pub-list .journal { font-style: italic; }
+
+/* ---------- Links list (external) ---------- */
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  padding-left: 0;
+  list-style: none;
+}
+.link-row a {
+  border: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.88rem;
+  color: var(--color-text);
+}
+.link-row a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* ---------- Supervision lists ---------- */
+
+.thesis-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dotted var(--color-border);
+}
+.thesis-item:last-child { border-bottom: none; }
+.thesis-name { font-weight: 700; font-size: 1.02rem; margin-bottom: 0.3em; }
+.thesis-title { font-weight: 700; margin-bottom: 0.25em; }
+.thesis-title.tu-delft { color: var(--color-tudelft); }
+.thesis-title.intl { color: var(--color-intl); }
+.thesis-meta { color: var(--color-text-muted); font-size: 0.88rem; }
+.thesis-meta .defense-date { font-weight: 700; color: var(--color-text); }
+.programme-key {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0.8em 0 1.6em;
+}
+.programme-key span { display: inline-flex; align-items: center; gap: 0.4em; }
+.swatch { display: inline-block; width: 11px; height: 11px; border-radius: 50%; }
+.swatch.tu-delft { background: var(--color-tudelft); }
+.swatch.intl { background: var(--color-intl); }
+
+/* ---------- Collapsible sections (native details/summary) ---------- */
+
+details.collapsible {
+  margin-top: 2.6em;
+  padding-top: 0.4em;
+  border-top: 1px solid var(--color-border);
+}
+details.collapsible summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  user-select: none;
+}
+details.collapsible summary::-webkit-details-marker { display: none; }
+details.collapsible summary h2,
+details.collapsible summary h3 {
+  margin: 0.6em 0;
+  border-top: none;
+  padding-top: 0;
+  display: inline;
+}
+details.collapsible summary::after {
+  content: "+ show";
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.15em 0.7em;
+  margin-left: auto;
+  white-space: nowrap;
+}
+details.collapsible[open] summary::after { content: "\2212 hide"; }
+details.collapsible summary:hover::after { color: var(--color-accent); border-color: var(--color-accent); }
+.collapsible-content { padding-bottom: 0.5em; }
+
+/* ---------- Publication / dissemination cards (citation + summary + image) ---------- */
+
+.pub-card {
+  display: flex;
+  gap: 1.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  margin-bottom: 1.4rem;
+  background: white;
+}
+.pub-card-figure {
+  flex: 0 0 160px;
+  width: 160px;
+}
+.pub-card-figure img, .pub-card-figure svg {
+  width: 100%;
+  height: 110px;
+  object-fit: contain;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-accent-soft);
+}
+.pub-card-body { flex: 1 1 auto; min-width: 0; }
+.pub-card-citation {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 0.5em;
+}
+.pub-card-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  margin: 0 0 0.3em;
+  color: var(--color-text);
+}
+.pub-card-authors {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.6em;
+}
+.pub-card-summary {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+.pub-card .journal { font-style: italic; }
+.pub-card-links { margin-top: 0.5em; font-size: 0.85rem; }
+
+@media (max-width: 560px) {
+  .pub-card { flex-direction: column; }
+  .pub-card-figure { width: 100%; }
+  .pub-card-figure img, .pub-card-figure svg { height: 140px; }
+}
+
+/* ---------- Dissemination: one box per conference/event ---------- */
+
+.event-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background: white;
+}
+.event-card h3 { margin: 0 0 0.2em; }
+.event-card .meta { color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 1em; }
+
+.event-paper {
+  padding: 0.8em 0;
+  border-top: 1px dotted var(--color-border);
+}
+.event-paper:first-of-type { border-top: none; padding-top: 0; }
+.event-paper-title {
+  font-weight: 600;
+  margin: 0 0 0.15em;
+}
+.event-paper-authors {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+.event-paper-note {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0.35em 0 0;
+}
+
+/* ---------- Notice / callout ---------- */
+
+.callout {
+  background: var(--color-accent-soft);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+}
+
+/* ---------- Responsive nav ---------- */
+
+@media (max-width: 780px) {
+  .nav-toggle { display: inline-block; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .site-nav.open { display: block; }
+  .site-nav > ul { flex-direction: column; gap: 0; padding: 0.6rem 1.5rem 1.2rem; }
+  .site-nav > ul > li { width: 100%; }
+  .dropdown { position: static; border: none; box-shadow: none; padding-left: 1rem; }
+}

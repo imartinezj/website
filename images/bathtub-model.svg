@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+  <rect x="0" y="0" width="800" height="360" fill="#ffffff"/>
+
+  <text x="400" y="38" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1c1a">Priority-Queue Bathtub Model</text>
+  <text x="400" y="60" text-anchor="middle" font-size="13" fill="#55534d">Network-level accumulation, served in priority order of remaining trip distance</text>
+
+  <!-- reservoir tube -->
+  <rect x="130" y="150" width="540" height="90" rx="45" fill="#eef2f6" stroke="#1f3a5f" stroke-width="2"/>
+
+  <!-- inflow arrow -->
+  <line x1="20" y1="195" x2="122" y2="195" stroke="#1f3a5f" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  <text x="20" y="130" font-size="13" fill="#1c1c1a" font-weight="600">New trips</text>
+  <text x="20" y="147" font-size="12" fill="#55534d">(inflow)</text>
+
+  <!-- outflow arrow -->
+  <line x1="678" y1="195" x2="780" y2="195" stroke="#1f3a5f" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+  <text x="780" y="130" text-anchor="end" font-size="13" fill="#1c1c1a" font-weight="600">Completed trips</text>
+  <text x="780" y="147" text-anchor="end" font-size="12" fill="#55534d">(outflow, distance = 0)</text>
+
+  <!-- trip agents inside the tube, ordered by remaining distance -->
+  <g stroke="#ffffff" stroke-width="1.5">
+    <circle cx="168" cy="195" r="19" fill="#1f3a5f"/>
+    <circle cx="225" cy="195" r="19" fill="#2c4a6e"/>
+    <circle cx="282" cy="195" r="19" fill="#395a7d"/>
+    <circle cx="339" cy="195" r="19" fill="#466a8c"/>
+    <circle cx="396" cy="195" r="18" fill="#537a9b"/>
+    <circle cx="453" cy="195" r="17" fill="#608aaa"/>
+    <circle cx="510" cy="195" r="16" fill="#7796b4"/>
+    <circle cx="567" cy="195" r="15" fill="#8aa4bd"/>
+    <circle cx="620" cy="195" r="14" fill="#b3bfd0"/>
+    <circle cx="662" cy="195" r="12" fill="#dbe3ea"/>
+  </g>
+
+  <!-- priority axis -->
+  <line x1="130" y1="270" x2="670" y2="270" stroke="#55534d" stroke-width="1.5" marker-end="url(#arrowsmall)"/>
+  <text x="400" y="295" text-anchor="middle" font-size="13" fill="#55534d">priority order — decreasing remaining distance</text>
+
+  <text x="168" y="255" text-anchor="middle" font-size="11" fill="#55534d">long distance</text>
+  <text x="662" y="255" text-anchor="middle" font-size="11" fill="#55534d">near completion</text>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1f3a5f"/>
+    </marker>
+    <marker id="arrowsmall" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#55534d"/>
+    </marker>
+  </defs>
+</svg>

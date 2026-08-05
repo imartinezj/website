@@ -1,0 +1,13 @@
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+  <rect width="300" height="200" fill="#eef2f6"/>
+  <path d="M10,80 Q100,150 150,150 Q200,150 290,80" fill="none" stroke="#1f3a5f" stroke-width="3"/>
+  <rect x="120" y="95" width="60" height="55" fill="#1c1c1a" opacity="0.08"/>
+  <path d="M120,150 Q150,95 180,150" fill="none" stroke="#55534d" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <g fill="#1f3a5f">
+    <rect x="30" y="66" width="16" height="10" rx="2"/>
+    <rect x="55" y="90" width="16" height="10" rx="2"/>
+    <rect x="200" y="90" width="16" height="10" rx="2"/>
+    <rect x="230" y="66" width="16" height="10" rx="2"/>
+  </g>
+  <text x="150" y="125" text-anchor="middle" font-size="11" fill="#55534d">tunnel</text>
+</svg>
