@@ -1,0 +1,34 @@
+<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of push and pull travel demand management policies jointly reducing traffic congestion and social equity externalities">
+  <rect width="300" height="220" fill="#ffffff"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#55534d"/>
+    </marker>
+  </defs>
+
+  <rect x="8" y="28" width="96" height="42" rx="4" fill="#eef2f6" stroke="#006C8C" stroke-width="1.5"/>
+  <text x="56" y="46" font-family="Inter, -apple-system, sans-serif" font-size="11.5" fill="#0c2b36" text-anchor="middle">Push</text>
+  <text x="56" y="60" font-family="Inter, -apple-system, sans-serif" font-size="11.5" fill="#0c2b36" text-anchor="middle">policies</text>
+
+  <rect x="8" y="150" width="96" height="42" rx="4" fill="#eef2f6" stroke="#006C8C" stroke-width="1.5"/>
+  <text x="56" y="168" font-family="Inter, -apple-system, sans-serif" font-size="11.5" fill="#0c2b36" text-anchor="middle">Pull</text>
+  <text x="56" y="182" font-family="Inter, -apple-system, sans-serif" font-size="11.5" fill="#0c2b36" text-anchor="middle">policy</text>
+
+  <rect x="118" y="89" width="96" height="42" rx="4" fill="#006C8C"/>
+  <text x="166" y="107" font-family="Inter, -apple-system, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle">Integrated</text>
+  <text x="166" y="121" font-family="Inter, -apple-system, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle">TDM system</text>
+
+  <path d="M104,52 C112,52 108,90 120,100" fill="none" stroke="#55534d" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M104,168 C112,168 108,130 120,120" fill="none" stroke="#55534d" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="228" y="18" width="66" height="42" rx="4" fill="#eef2f6" stroke="#9C4221" stroke-width="1.5"/>
+  <text x="261" y="36" font-family="Inter, -apple-system, sans-serif" font-size="10.5" fill="#5c210f" text-anchor="middle">Congestion</text>
+  <text x="261" y="52" font-family="Inter, -apple-system, sans-serif" font-size="12" fill="#5c210f" text-anchor="middle">&#8595;</text>
+
+  <rect x="228" y="160" width="66" height="42" rx="4" fill="#eef2f6" stroke="#9C4221" stroke-width="1.5"/>
+  <text x="261" y="178" font-family="Inter, -apple-system, sans-serif" font-size="10.5" fill="#5c210f" text-anchor="middle">Equity gaps</text>
+  <text x="261" y="194" font-family="Inter, -apple-system, sans-serif" font-size="12" fill="#5c210f" text-anchor="middle">&#8595;</text>
+
+  <path d="M214,100 C222,100 220,42 226,38" fill="none" stroke="#55534d" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M214,120 C222,120 220,178 226,182" fill="none" stroke="#55534d" stroke-width="1.5" marker-end="url(#arrow)"/>
+</svg>

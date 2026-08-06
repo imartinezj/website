@@ -17,6 +17,8 @@
   --color-tudelft: #006C8C;     /* same accessible TU Delft blue — used for text (thesis titles) and legend dot */
   --color-tudelft-swatch: #00A6D6;  /* brighter TU Delft cyan — decorative use only (page-hero underline accent) */
   --color-intl: #9C4221;        /* warm rust/terracotta — UPC / other international programmes, deliberately a different hue from TU Delft blue */
+  --color-danger: #a32d2d;      /* status red — "currently under review" tag only */
+  --color-danger-soft: #fbe9e9;
 
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -391,6 +393,17 @@ main {
   margin-right: 0.5em;
 }
 .pub-list .journal { font-style: italic; }
+.pub-tag-review {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-danger);
+  background: var(--color-danger-soft);
+  border-radius: 3px;
+  padding: 0.05em 0.45em;
+  margin-right: 0.5em;
+}
 
 /* ---------- Links list (external) ---------- */
 
@@ -438,6 +451,62 @@ main {
 .swatch.tu-delft { background: var(--color-tudelft); }
 .swatch.intl { background: var(--color-intl); }
 
+/* ---------- Researcher cards (Supervision — Current/Former PhD candidates & other researchers) ---------- */
+
+.researcher-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem;
+  margin: 1.2rem 0 2rem;
+}
+.researcher-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.4rem;
+  background: white;
+}
+.researcher-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 0.25em;
+}
+.researcher-name a { border-bottom: none; }
+.researcher-name a:hover { color: var(--color-link-hover); }
+.researcher-title {
+  font-weight: 600;
+  font-size: 0.94rem;
+  line-height: 1.4;
+  margin-bottom: 0.4em;
+  color: var(--color-text);
+}
+.researcher-meta {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.8em;
+}
+.researcher-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.researcher-links a {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 0.15em 0.55em;
+}
+.researcher-links a:hover { background: var(--color-accent); color: white; }
+
+@media (max-width: 620px) {
+  .researcher-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- Year groups (MSc list, grouped by defense year) ---------- */
 
 .year-group {
@@ -467,6 +536,7 @@ main {
 .year-group summary:hover { color: var(--color-accent); }
 .year-group summary .year-count { font-weight: 400; font-size: 0.85rem; }
 .year-group .thesis-item:first-of-type { margin-top: 1rem; }
+.year-group .event-card:first-of-type { margin-top: 1rem; }
 
 /* ---------- Collapsible sections (native details/summary) ---------- */
 
@@ -475,7 +545,7 @@ details.collapsible {
   padding-top: 0.4em;
   border-top: 1px solid var(--color-border);
 }
-details.collapsible summary {
+details.collapsible > summary {
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -483,15 +553,15 @@ details.collapsible summary {
   gap: 0.5em;
   user-select: none;
 }
-details.collapsible summary::-webkit-details-marker { display: none; }
-details.collapsible summary h2,
-details.collapsible summary h3 {
+details.collapsible > summary::-webkit-details-marker { display: none; }
+details.collapsible > summary h2,
+details.collapsible > summary h3 {
   margin: 0.6em 0;
   border-top: none;
   padding-top: 0;
   display: inline;
 }
-details.collapsible summary::after {
+details.collapsible > summary::after {
   content: "+ show";
   font-family: var(--font-sans);
   font-size: 0.8rem;
@@ -503,8 +573,8 @@ details.collapsible summary::after {
   margin-left: auto;
   white-space: nowrap;
 }
-details.collapsible[open] summary::after { content: "\2212 hide"; }
-details.collapsible summary:hover::after { color: var(--color-accent); border-color: var(--color-accent); }
+details.collapsible[open] > summary::after { content: "\2212 hide"; }
+details.collapsible > summary:hover::after { color: var(--color-accent); border-color: var(--color-accent); }
 .collapsible-content { padding-bottom: 0.5em; }
 
 /* ---------- Publication / dissemination cards (citation + summary + image) ---------- */

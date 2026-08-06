@@ -1,0 +1,10 @@
+<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing driver task demand rising with traffic complexity">
+  <rect width="300" height="220" fill="#ffffff"/>
+  <line x1="55" y1="18" x2="55" y2="182" stroke="#1c1c1a" stroke-width="2"/>
+  <line x1="55" y1="182" x2="272" y2="182" stroke="#1c1c1a" stroke-width="2"/>
+  <polygon points="55,12 49,25 61,25" fill="#1c1c1a"/>
+  <polygon points="278,182 265,176 265,188" fill="#1c1c1a"/>
+  <path d="M55,176 C110,174 155,158 190,128 C215,105 235,72 253,32" fill="none" stroke="#006C8C" stroke-width="3.5" stroke-linecap="round"/>
+  <text x="30" y="100" font-family="Inter, -apple-system, sans-serif" font-size="13" fill="#55534d" text-anchor="middle" transform="rotate(-90 30 100)">Task demand</text>
+  <text x="163" y="206" font-family="Inter, -apple-system, sans-serif" font-size="13" fill="#55534d" text-anchor="middle">Traffic complexity</text>
+</svg>
