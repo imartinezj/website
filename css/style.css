@@ -541,7 +541,7 @@ main {
 /* ---------- Collapsible sections (native details/summary) ---------- */
 
 details.collapsible {
-  margin-top: 2.6em;
+  margin-top: 1.4em;
   padding-top: 0.4em;
   border-top: 1px solid var(--color-border);
 }
